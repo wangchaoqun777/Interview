@@ -5,7 +5,7 @@ nth-child 匹配父元素中第n个子元素且是某种类型的子元素
 ```javascript
 console.log(typeof NaN) //number
 console.log(typeof true) //boolean
-console.log(typeof Symbol(1)) //symbol
+console.log(typeof Symbol(1)) //symbol Symbol 生成一个全局唯一的值。
 console.log(typeof undefined) //undefined
 console.log(typeof "") //string
 
