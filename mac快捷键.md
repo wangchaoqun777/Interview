@@ -7,3 +7,5 @@
 7. cd ~ 回到根目录
 8. mkdir
 9. pwd 查看当前目录 
+10. 终止运行程序  sudo lsof -i :8080
+11. 解压rar unrar x **.rar
