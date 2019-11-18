@@ -1,8 +1,8 @@
 
 1. 退出 merge git merge --abort
 2. 回滚 merge git reset --hard commitID
-
-3. commit 信息
+3. git branch  -av  查看所有分支
+4. commit 信息
 feat 新增一个功能
 fix  修复了一个bug
 docs 文档变更
