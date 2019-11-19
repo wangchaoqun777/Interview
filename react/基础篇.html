@@ -23,3 +23,62 @@
 </script>
 
 <!-- 虚拟dom -->
+
+<!-- context -->
+const ThemeContext = React.creactContext('light')
+class App extends React.Component {
+  render () {
+    使用一个Provider 来将当前的theme 传递给以下的组件树
+    return (
+      <ThemeContext.Provider value="dark">
+        <toolbar />
+      </ThemeContext>
+    )
+  }
+}
+
+// 中间的组件再也不必指明往下传递 theme 了。
+function Toolbar(props) {
+  return (
+    <div>
+      <ThemedButton />
+    </div>
+  );
+}
+
+class ThemedButton extends React.Component {
+  // 指定 contextType 读取当前的 theme context。
+  // React 会往上找到最近的 theme Provider，然后使用它的值。
+  // 在这个例子中，当前的 theme 值为 “dark”。
+  static contextType = ThemeContext;
+  render() {
+    return <Button theme={this.context} />;
+  }
+}
+
+<!-- 错误边界 --> // 错误边界是一种 React 组件，这种组件可以捕获并打印发生在其子组件树任何位置的 JavaScript 错误，并且，它会渲染出备用 UI
+
+<!-- refs 转发 --> // Ref 转发是一个可选特性，其允许某些组件接收 ref，并将其向下传递（换句话说，“转发”它）给子组件
+
+<!-- Fragments --> // Fragments 允许你将子列表分组，而无需向 DOM 添加额外节点。
+render() {
+  return (
+    <React.Fragment>
+      <ChildA />
+      <ChildB />
+      <ChildC />
+    </React.Fragment>
+  );
+}
+class Columns extends React.Component {
+  render() {
+    return (
+      <>
+        <td>Hello</td>
+        <td>World</td>
+      </>
+    );
+  }
+}
+
+<!-- 高阶组件 --> // 组件是将 props 转换为 UI，而高阶组件是将组件转换为另一个组件。
