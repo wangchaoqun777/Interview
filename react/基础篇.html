@@ -21,10 +21,17 @@
   const domContainer = document.querySelector('#like_button_container')
   ReactDOM.render( <button onClick={ () => this.setState( {liked:true})}> Like </button>, domContainer)
 </script>
-
+<!-- 创建app -->
+npx create-react-app my-app
 <!-- 虚拟dom -->
+所谓的 JSX 其实就是 JavaScript 对象
+JSX 是 JavaScript 语言的一种语法扩展，长得像 HTML，但并不是 HTML。
+React.js 可以用 JSX 来描述你的组件长什么样的。
+JSX 在编译的时候会变成相应的 JavaScript 对象描述。
+react-dom 负责把这个用来描述 UI 信息的 JavaScript 对象变成 DOM 元素，并且渲染到页面上。
 
-<!-- context -->
+
+<!-- context --> 第三方管理库代替此功能 redux避免产生全局变量
 const ThemeContext = React.creactContext('light')
 class App extends React.Component {
   render () {
@@ -58,7 +65,7 @@ class ThemedButton extends React.Component {
 
 <!-- 错误边界 --> // 错误边界是一种 React 组件，这种组件可以捕获并打印发生在其子组件树任何位置的 JavaScript 错误，并且，它会渲染出备用 UI
 
-<!-- refs 转发 --> // Ref 转发是一个可选特性，其允许某些组件接收 ref，并将其向下传递（换句话说，“转发”它）给子组件
+<!-- refs 转发 --> // Ref 转发是一个可选特性，其允许某些组件接收 ref，并将其向下传递（换句话说，“转发”它）给子组件 可以实现操作dom，但是不可取
 
 <!-- Fragments --> // Fragments 允许你将子列表分组，而无需向 DOM 添加额外节点。
 render() {
@@ -81,4 +88,97 @@ class Columns extends React.Component {
   }
 }
 
-<!-- 高阶组件 --> // 组件是将 props 转换为 UI，而高阶组件是将组件转换为另一个组件。
+<!-- 高阶组件 --> // 组件是将 props 转换为 UI，而高阶组件是将组件转换为另一个组件。它是一个函数,其实就是设计模式里面的装饰者模式
+
+
+class Test extends Component {
+  constructor (prop) {
+    super(prop)
+    this.state = { istest: fasle }
+  }
+
+  render () {
+    return (
+      <div>test</div>
+    )
+  }
+<!-- state props -->
+state 的主要作用是用于组件保存、控制、修改自己的可变状态。state 在组件内部初始化，可以被组件自身修改，而外部不能访问也不能修改。你可以认为 state 是一个局部的、只能被组件自身控制的数据源。state 中状态可以通过 this.setState 方法进行更新，setState 会导致组件的重新渲染。
+
+props 的主要作用是让使用该组件的父组件可以传入参数来配置该组件。它是外部传进来的配置参数，组件内部无法控制也无法修改。除非外部组件主动传入新的 props，否则组件的 props 永远保持不变。
+它们的职责其实非常明晰分明：state 是让组件控制自己的状态，props 是让外部对组件自己进行配置。
+
+class HelloWorld extends Component {
+  constructor() {
+    super()
+  }
+
+  sayHi () {
+    alert('Hello World')
+  }
+
+  render () {
+    return (
+      <div onClick={this.sayHi.bind(this)}>Hello World</div>
+    )
+  }
+}
+
+无状态组件（函数式组件）
+const HelloWorld = (props) => {
+  const sayHi = (event) => alert('Hello World')
+  return (
+    <div onClick={sayHi}>Hello World</div>
+  )
+}
+
+<!-- 状态提升 -->
+当某个状态被多个组件依赖或者影响的时候，就把该状态提升到这些组件的最近公共父组件中去管理，用 props 传递数据或者函数来管理这种依赖或着影响的行为。
+
+<!-- 生命周期 -->
+React.js 将组件渲染，并且构造 DOM 元素然后塞入页面的过程称为组件的挂载
+constructor()
+componentWillMount()
+render()
+componentDidMount()
+componentWillUnmount()
+
+shouldComponentUpdate(nextProps, nextState)：你可以通过这个方法控制组件是否重新渲染。如果返回 false 组件就不会重新渲染。这个生命周期在 React.js 性能优化上非常有用。
+componentWillReceiveProps(nextProps)：组件从父组件接收到新的 props 之前调用。
+componentWillUpdate()：组件开始重新渲染之前调用。
+componentDidUpdate()：组件重新渲染并且把更改变更到真实的 DOM 以后调用。
+我们一般会把组件的 state 的初始化工作放在 constructor 里面去做；在 componentWillMount 进行组件的启动工作，例如 Ajax 数据拉取、定时器的启动；组件从页面上销毁的时候，有时候需要一些数据的清理，例如定时器的清理，就会放在 componentWillUnmount 里面去做。
+
+<!-- dangerouslySetHTML 和 style 属性 -->
+render () {
+  return (
+    <div
+      className='editor-wrapper'
+      dangerouslySetInnerHTML={{__html: this.state.content}} />
+  )
+}
+
+<!-- 组件参数类型 --> 给组件的配置参数加上类型验证
+npm install --save prop-types
+
+static propTypes = {
+  comment: PropTypes.object
+}
+<!-- PropTypes.array
+PropTypes.bool
+PropTypes.func
+PropTypes.number
+PropTypes.object
+PropTypes.string
+PropTypes.node
+PropTypes.element -->
+
+<!-- 组件书写规范 -->
+1. static 开头的类属性，如 defaultProps、propTypes。
+2. 构造函数，constructor。
+3. getter/setter（还不了解的同学可以暂时忽略）。
+4. 组件生命周期。
+5. _ 开头的私有方法。
+6. 事件监听方法，handle*。
+7. render*开头的方法，有时候 render() 方法里面的内容会分开到不同函数里面进行，这些函数都以 render* 开头。
+8. render() 方法。
