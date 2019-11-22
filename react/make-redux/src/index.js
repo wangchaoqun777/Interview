@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import Header from './Header'
+import Header from './containers/Header'
 import Content from './Content';
 import PropTypes from 'prop-types'
 // import { Provider } from './react-redux'
