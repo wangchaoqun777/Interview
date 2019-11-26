@@ -3,3 +3,5 @@
 3. 查看密钥 cat id_rsa 
 
     [参考https://www.jianshu.com/p/17fa8d34beb2](https://www.jianshu.com/p/17fa8d34beb2)
+
+    mac 每次升级后 xcode-select --install
