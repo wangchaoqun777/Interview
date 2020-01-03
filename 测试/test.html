@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let  ar = [1,2,3,4,2,6]
+    ar.map((item, index) => {
+      if(item == 2) {
+        ar.splice(index, 1)
+        ar = ar
+        console.log(index)
+      }
+    })
+  </script>
+</body>
+</html>
