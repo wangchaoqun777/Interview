@@ -50,7 +50,7 @@ export default class App extends Component {
         menuStyle: false,
       })
     }
-    console.log(sessionStorage.getItem('menuStyle'))
+    console.log('tag', sessionStorage.getItem('menuStyle'))
     console.log(sessionStorage.getItem('menuStyle') === 'true')
     if (sessionStorage.getItem('menuStyle') === 'true') {
       this.setState({
@@ -58,6 +58,7 @@ export default class App extends Component {
       })
     }
     const { query } = this.props.location
+    console.log('query', this.props)
     if (query.ticket) { // 如果是url路径带ticket的话，那么在当前页面做登录的初始化
       validateTickit(this.props.location, (res) => {
         this.setState({
