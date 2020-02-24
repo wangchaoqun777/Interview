@@ -5,19 +5,18 @@ import About from "../view/about/index"
 import Book from "../view/book/index"
 import Details from "../view/details/index"
 import User from "../view/user/index"
-console.log('tag', Index)
 export default class RouterIndex extends Component {
   render() {
     return (
       <Switch>
         <Route path="/" exact render={ ()=> (
-          <Redirect to="/index" />
+          <Redirect to="/index/all" />
     )} />
-        <Route path="/index" Component={ Index } />
-        <Route path="/about" Component={ About } />
-        <Route path="/book" Component={ Book }/>
-        <Route path="/details" Component={ Details }/>
-        <Route path="/user" Component={ User }/>
+        <Route path="/index/:id" exact component={ Index } />
+        <Route path="/about"  exact component={ About } />
+        <Route path="/book" component={ Book }/>
+        <Route path="/details" component={ Details }/>
+        <Route path="/user" component={ User }/>
       </Switch>
     )
   }

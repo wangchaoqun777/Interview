@@ -1,0 +1,5 @@
+- 背景： 
+  - 下载头条项目时一直 npm install 发现没有modelues包可以下载下来，有提示警告
+  - 可能是 npm install 的过程中出现了错误，没有正确的安装依赖，像 npm run dev 这类命令自然无法运行，除了
+- 解决：
+  - 执行 npm cache clean --force 清除缓存，还可以尝试删除 package-lock.json，再运行 npm install
