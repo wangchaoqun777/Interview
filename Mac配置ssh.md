@@ -40,10 +40,10 @@
    由于最初只关联一个远程时，配置的用户信息基本都是全局的，因此要做调整
    4. 定位到本地具体项目路径下，运行如下命令：
     # 取消全局 用户名/邮箱 配置
-	git config –global –unset user.name
-	git config –global –unset user.email
+	git config –-global –-unset user.name
+	git config –-global –-unset user.email
 	
-	# 单独设置每个项目 用户名/邮箱
+	# 单独设置每个项目  用户名/邮箱
 	git config user.email “shiguoying@zgit.zebra-c.com”
 	git config user.name “shiguoying”
 	
@@ -103,4 +103,4 @@
 
  3  然后找到系统自动在.ssh文件夹下生成两个文件，id_rsa和id_rsa.pub，用记事本打开id_rsa.pub将全部的内容复制
 
-    
+    本地 192.168.12.117
