@@ -468,3 +468,9 @@ VUE_APP_PROXY_MOCK_SIGN=/mock
 新建项目问卷的时候 也要添加type
 
 照片不是该评估员拍的
+
+
+zebra_admin_test
+1234567
+git@zgit.zebra-c.com:frontend/php/datastone.git
+

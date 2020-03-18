@@ -104,3 +104,5 @@
  3  然后找到系统自动在.ssh文件夹下生成两个文件，id_rsa和id_rsa.pub，用记事本打开id_rsa.pub将全部的内容复制
 
     本地 192.168.12.117
+
+    192.168.11.206 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEApETCGy0aiKb56DyUvOxVn902tOWgc/mlruo7BdGYjWe+hgw4ACalYDw02P3Wt8rfBaSoJgTwvOIqVoOr3JdNHN5VQKMAJ3bghf4uW49eBEZvdSiE8g5w607IvMtaWzlVqnz1GKndORnBE5QrgEgxwknaVswQafFWCEIjET6UWtV2n35FxWE6EN8d2Dzm9qXHy6IYZI5MrrZyX7H5nY+Gh98dMYsiBJ/eqznBU6HENGie8U/EYbVUcfm6b2xf/yhZV+Vo5TPBz/exlkhwt+kMGUt0JScuXYPcDJbqU1+bIYHHmQYxyF1zBQ8O218YCMJ5F4/0Fc03BT+1F0gDqL3+Mw==
