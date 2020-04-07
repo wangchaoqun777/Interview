@@ -68,3 +68,14 @@
   </template>
 </todo-list>
 ```
+
+ - 新的简写形式
+```js
+  <template>
+    <<base-table>
+      <template #row="{item}">
+
+      </template>
+    </base-table>
+  </template>
+```
