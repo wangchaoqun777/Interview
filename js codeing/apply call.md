@@ -1,4 +1,4 @@
-#### call
+#### call call() 方法使用一个指定的 this 值和单独给出的一个或多个参数来调用一个函数语法：function.call(thisArg, arg1, arg2, ...)
 1. 解决var作用域问题
 ```js
 var bottle = [
@@ -35,7 +35,7 @@ sayWord.call(bottle);
 // bottle say hello
 ```
 
-#### apply 
+#### apply  apply() 方法调用一个具有给定this值的函数，以及作为一个数组（或类似数组对象）提供的参数。语法：func.apply(thisArg, [argsArray])
 1. 配合内置函数找出最大最小值
 ```js
 /* 找出数组中最大/小的数字 */
@@ -91,6 +91,14 @@ let wrapper = function() {
 // wrapper 通过 anotherFunction.apply 获得了上下文 this 和 anotherFunction 的参数并返回其结果。
 ```
 
-#### bind
+#### bind bind() 方法创建一个新的函数，在 bind() 被调用时，这个新函数的 this 被指定为 bind() 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。 语法: function.bind(thisArg, arg1, arg2, ...)
 
+```js
+function test(arg) {
+  console.log(this.name)
+  console.log(arg)
+}
+const newtest = test.bind({name: '123'},'ahahh')
+newtest()
+```
 

@@ -1,116 +1,142 @@
-[   
-    {   
-        "name": "chuanshanjia",
-        "context": "/Users/wangchaoqun/project/chuanshanjia1",
-        "host": "121.43.32.133",
-        "protocol": "sftp",
-        "port": 22,
-        "username": "root",
-        "passwrod": "TripTest*!#",
-        "remotePath": "/data/www/lighttpd/chuanshanjia",
-        "uploadOnSave": false,
-        "ignore": [
-            "/.vscode/",
-            "/.git/",
-            "**/.DS_Store"
-        ]
+<template>
+<div>
+ <div width="95%" height="180" class="filter_card px-3 py-3">
+  <v-text-field label="客户名称" v-model="params.name" @blur="getLsit"></v-text-field>
+  <v-menu
+    ref="startMenu"
+    v-model="startMenu"
+    :close-on-content-click="false"
+    :nudge-right="40"
+    :return-value.sync="dateRangeText"
+    transition="scale-transition"
+    min-width="290px"
+    offset-y
+  >
+    <template v-slot:activator="{ on }">
+      <v-text-field
+        v-model="dateRangeText"
+        class="mt-3"
+        label="时间"
+        dense
+        readonly
+        outlined
+        hide-details
+        v-on="on"
+      ></v-text-field>
+    </template>
+    <v-date-picker
+      v-model="params.created_at"
+      no-title
+      scrollable
+      range
+    >
+      <v-spacer></v-spacer>
+      <v-btn
+        text
+        color="primary"
+        @click="startMenu = false"
+      >
+        取消
+      </v-btn>
+        <v-btn
+          text
+          color="primary"
+          @click="$refs.startMenu.save(params.created_at)"
+        >
+          确认
+        </v-btn>
+      </v-date-picker>
+    </v-menu>
+ </div>
+  <virtual-list :size="100" :remain="5" :list="userList">
+      <v-card
+        height="100"
+        class="virtual-list mt-3 ml-2"
+        slot-scope="{ item }"
+        :item="{item}"
+        width="95%">
+        <v-row>
+          <v-col class="pl-5" cols="7">
+            <p>{{item.department}}</p>
+            <p>创建时间:{{item.created_time}}</p>
+            <p>审批状态:{{item.status}}</p>
+          </v-col>
+          <v-col class="user_item_btn" cols="5">
+            <p class="pl-2"><v-btn width="80" height="30">详  情</v-btn></p>
+            <p class="pl-2"><v-btn width="80" height="30">审批页</v-btn></p>
+          </v-col>
+        </v-row>
+      </v-card>
+      </virtual-list>
+</div>
+</template>
+<script>
+export default {
+  name: 'users',
+  data: () => ({
+    isActive: false,
+    startMenu: false,
+    params: {
+      name: '',
+      created_at: ['2019-09-10', '2019-09-20'],
     },
-    {   
-        "name": "newtestqc",
-        "context": "/Users/wangchaoqun/project/qc1",
-        "host": "120.27.130.7",
-        "protocol": "sftp",
-        "port": 22,
-        "username": "root",
-        "passwrod": "Qichetest!a",
-        "remotePath": "/data/www/lighttpd/qc",
-        "uploadOnSave": false,
-        "ignore": [
-            "/.vscode/",
-            "/.git/",
-            "**/.DS_Store"
-        ]
-    },
-    {   
-        "name": "newqc",
-        "context": "/Users/wangchaoqun/project/qc",
-        "host": "39.100.88.63",
-        "protocol": "sftp",
-        "port": 22,
-        "username": "root",
-        "passwrod": "MaxQc201978!",
-        "remotePath": "/data/www/lighttpd/qc",
-        "uploadOnSave": false,
-        "ignore": [
-            "/.vscode/",
-            "/.git/",
-            "**/.DS_Store"
-        ]
-    },
-    {   
-        "name": "testqc",
-        "context": "/Users/wangchaoqun/project/qccheck",
-        "host": "120.27.130.7",
-        "protocol": "sftp",
-        "port": 22,
-        "username": "root",
-        "passwrod": "Qichetest!a",
-        "remotePath": "/data/www/lighttpd/qc",
-        "uploadOnSave": false,
-        "ignore": [
-            "/.vscode/",
-            "/.git/",
-            "**/.DS_Store"
-        ]
-    },
-    {   
-        "name": "qc",
-        "context": "/Users/wangchaoqun/project/qccheck1",
-        "host": "39.100.88.63",
-        "protocol": "sftp",
-        "port": 22,
-        "username": "root",
-        "passwrod": "MaxQc201978!",
-        "remotePath": "/data/www/lighttpd/qc",
-        "uploadOnSave": false,
-        "ignore": [
-            "/.vscode/",
-            "/.git/",
-            "**/.DS_Store"
-        ]
-    },
-    {   
-        "name": "huoniaotest",
-        "context": "/Users/wangchaoqun/project/huoniao",
-        "host": "115.28.203.232",
-        "protocol": "sftp",
-        "port": 22,
-        "username": "root",
-        "passwrod": "DatastoneT@$^t",
-        "remotePath": "/data/www/lighttpd/huoniao",
-        "uploadOnSave": false,
-        "ignore": [
-            "/.vscode/",
-            "/.git/",
-            "**/.DS_Store"
-        ]
-    },
-    {   
-        "name": "huoniao",
-        "context": "/Users/wangchaoqun/project/huoniao",
-        "host": "121.42.184.203",
-        "protocol": "sftp",
-        "port": 9777,
-        "username": "root",
-        "passwrod": "BmwShow@$^t",
-        "remotePath": "/data/www/lighttpd/huoniao",
-        "uploadOnSave": false,
-        "connectTimeout": 100000,
-        "ignore": [
-            "/.vscode/",
-            "/.git/",
-            "**/.DS_Store"
-        ]
+    userList: [{
+      id: 0,
+      department: '光速斑马',
+      created_time: '2010-10-02',
+      status: '有待审批项'
+    }, {
+      id: 1,
+      department: '光速斑马',
+      created_time: '2010-10-03',
+      status: '有待审批项'
+    }, {
+      id: 3,
+      department: '光速斑马',
+      created_time: '2010-10-05',
+      status: '有待审批项'
+    }, {
+      id: 3,
+      department: '光速斑马',
+      created_time: '2010-10-05',
+      status: '有待审批项'
+    }, {
+      id: 3,
+      department: '光速斑马',
+      created_time: '2010-10-05',
+      status: '有待审批项'
+    }]
+  }),
+  watch: {
+    dateRangeText () {
+      this.getLsit()
     }
-]
+  },
+  components: {
+  },
+  computed: {
+    dateRangeText: {
+      get () {
+        return this.params.created_at.join(' ~ ')
+      },
+      set (val) {
 
+      }
+    }
+  },
+  methods: {
+    // 获取账户管理列表
+    getLsit () {
+      console.log('val')
+      this.$api.account(this.params).then((data) => {
+
+      })
+    }
+  }
+}
+</script>
+<style lang="scss">
+  .filter_card{
+    margin: 0 auto
+  }
+</style>

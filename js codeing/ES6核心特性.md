@@ -76,3 +76,28 @@ const dog = new Dog()
 dog.eat()
 dog.bark()
 ```
+9. flat()
+```js
+const arr = [1, [1,2], [1,2,3]]
+arr.flat(Infinity) // [1,1,2,1,2,3]
+```
+
+10. 递归 （对于树状结构处理采用递归）
+```js
+const arr = [1, [1,2], [1,2,3]]
+function flat(arr) {
+  let result = []
+  for(const item of arr){
+    item instanceof Array ? result.concat(flat(item)) : result.push(item)
+  }
+  return result
+}
+// reduce 裂变
+function flat(arr) {
+  return arr.reduce((prev, cur) => {
+    return prev.concat(cur instanceof Array ? flat(cur) : cur)
+  }, [])
+}
+
+flat(arr)
+```
