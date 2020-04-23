@@ -143,3 +143,86 @@
   gen.next()
   gen.next('test1')
   gen.next('test2')
+  const newS = 'sss'.repeat(2)
+  console.log(newS)
+
+  console.log([1, 2, 3, 4, 5].copyWithin(0, 1, 1))
+
+  let arr = [1, 2 ,3, 3, 4, 5];
+    let find = arr.find((item, index, arr) => {
+        return item === 3;
+    });
+    let findIndex = arr.findIndex((item, index, arr) => {
+        return item === 3;
+    });
+
+    console.log(find, findIndex);
+
+    let person ={
+      eat(){
+          return 'milk';
+      }
+  }
+  let student = {
+      __proto__:person,
+      eat(){
+          return super.eat()+' bread'
+      }
+  }
+  console.log(student.eat());
+
+// class Person {
+//   constructor(){
+//     this.hobbies = [];
+//   }
+//   set hobby(hobby){
+//       this.hobbies.push(hobby);
+//   }
+//   get hobby(){
+//       return this.hobbies;
+//   }
+// }
+//   let person = new Person();
+//   person.hobby = 'basketball';
+//   person.hobby = 'football';
+//   console.log(person.hobby);
+var parent = {
+  age: 5,
+  hobby: [1, 2, 3],
+  home: {city: '北京'},
+};
+
+var child = extendDeep(parent);
+child.age = 6;
+child.hobby.push('4');
+child.home.city = '广东';
+console.log('child ', child); //[1, 2, 3, 4]
+console.log('parent ', parent);
+// function extend(parent) {
+//   let child;
+//   if (Object.prototype.toString.call(parent) == '[object Object]') {
+//     child = {};
+//     for (let key in parent) {
+//       child[key] = extend(parent[key])
+//     }
+//   } else if (Object.prototype.toString.call(parent) == '[object Array]') {
+//     child = parent.map(item => extend(item));
+//   } else {
+//     return parent;
+//   }
+//   return child;
+// }
+
+function extendDeep(parent, child) {
+  child = child || {};
+  for (var key in parent) {
+    if (typeof parent[key] === "object") {
+      child[key] = (Object.prototype.toString.call(parent[key]) === "[object Array]") ? [] : {};
+      extendDeep(parent[key], child[key]);
+    } else {
+      child[key] = parent[key];
+    }
+  }
+  return child;
+}
+

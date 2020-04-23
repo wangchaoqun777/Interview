@@ -18,12 +18,16 @@ MathFun.prototype.add = function () {
 
 var m = new MathFun(1, 2)
 console.log(m.add())
-
+// 使用class这个关键词定义一个类,基于这个类创建实例以后会自动执行constructor方法,此方法可以用来初始化
 Class MathFun {
   constructor(x,y) {
     this.x = x
     this.y = y
   }
+  // 在类里面添加静态的方法可以使用static这个关键词，静态方法就是不需要实例化类就能使用的方法
+  static add1 (a,b){
+       return a+b;
+   }
   add () {
     return this.x + this.y
   }
@@ -65,7 +69,7 @@ Class Animal {
 }
 Class Dog extends Animal {
   constructor(name) {
-    super(name) //  有extend就必须要有super，它代表父类的构造函数，即Animal中的constructor
+    super(name) //  有extend就必须要有super，它代表父类的构造函数，即Animal中的constructor 通过super可以调用prototype上的属性或方法
     this.name = name
   }
   bark () {
@@ -100,4 +104,43 @@ function flat(arr) {
 }
 
 flat(arr)
+```
+
+11. 字符串新方法
+ - includes() 返回布尔值 表示是否找到了参数字符串
+ - startsWith() 表示参数字符串是否在源字符串的头部
+ - endsWith() 表示参数字符串是否在源字符串的尾部
+ ```js
+  var s = 'zfpx';
+  s.startsWith('z') // true
+  s.endsWith('x') // true
+  s.includes('p') // true
+  // 第二个参数，表示开始搜索的位置 endsWith的行为与其他两个方法有所不同。它针对前n个字符
+  console.log(s.endsWith('f',2)); // true
+  console.log(s.includes('f',2)); // false
+ ```
+
+ 12. 展开操作符
+ ```js
+ //传入参数
+  print([1,2,3]);
+  print(...[1,2,3]);
+// 可以替代concat
+  var arr3 = arr1.concat(arr2);
+  var arr4 = [...arr1, ...arr2]
+// 可以替代apply
+  var m1 = Math.max.apply(null, [8, 9, 4, 1]);
+  var m2 = Math.max(...[8, 9, 4, 1]);
+//类数组的转数组
+  function max(a,b,c) {
+    console.log(Math.max(...arguments));
+  }
+ ```
+
+ 13. 剩余操作符
+ ```js
+ let rest = function(a,...rest){
+      console.log(a,rest);
+  }
+  rest(1,2,3)
 ```
