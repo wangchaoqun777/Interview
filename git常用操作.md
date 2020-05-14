@@ -24,3 +24,6 @@
 先删后加
 git remote rm origin
 git remote add origin git@**\*\***
+
+8. 拉取主分支代码
+   git pull origin master
