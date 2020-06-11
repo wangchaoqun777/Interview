@@ -27,3 +27,21 @@ git remote add origin git@**\*\***
 
 8. 拉取主分支代码
    git pull origin master
+
+9. 修改分支名，不影响当前开发
+   git branch -m <oldbranchname> <newbranchname>
+
+10. 本地工作区文件恢复
+    git checkout <filename/diranme>
+
+11. 已将更改提交到本地，需要撤回提交 (撤销了 commit)
+    git reset --soft HEAD~1
+
+12. 用新的更改替换撤回的更改 (撤销了 commit 和 add)
+    git reset --mixed HEAD~1
+
+13. 本地提交了错误的文件
+    git reset --hard HEAD~1
+
+14. 撤销本地分支合并
+    git revert <commit-id>
