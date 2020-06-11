@@ -495,3 +495,6 @@ echo 删除本地压缩包
 rm -rf \$FILE
 
 echo 结束
+
+13111110000 123456
+testmaxdc.zebra-c.com/wechatRedirect?page_type=1
