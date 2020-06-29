@@ -497,4 +497,5 @@ rm -rf \$FILE
 echo 结束
 
 13111110000 123456
+13166669999
 testmaxdc.zebra-c.com/wechatRedirect?page_type=1
