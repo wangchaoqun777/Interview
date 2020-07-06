@@ -1,48 +1,53 @@
 #### call call() 方法使用一个指定的 this 值和单独给出的一个或多个参数来调用一个函数语法：function.call(thisArg, arg1, arg2, ...)
-1. 解决var作用域问题
+
+1. 解决 var 作用域问题
+
 ```js
 var bottle = [
-  {name: 'an', age: '24'},
-  {name: 'anGe', age: '12'}
+  { name: "an", age: "24" },
+  { name: "anGe", age: "12" }
 ];
 
 for (var i = 0; i < bottle.length; i++) {
   // 匿名函数
-  (function (i) { 
+  (function(i) {
     setTimeout(() => {
       // this 指向了 bottle[i]
-      console.log('#' + i  + ' ' + this.name + ': ' + this.age); 
-    }, 1000)
-  }).call(bottle[i], i);
+      console.log("#" + i + " " + this.name + ": " + this.age);
+    }, 1000);
+  }.call(bottle[i], i));
   // 调用 call 方法，同时解决了 var 作用域问题
 }
 ```
 
 2. 绑定上下文
+
 ```js
 function sayWord() {
-  var talk = [this.name, 'say', this.word].join(' ');
+  var talk = [this.name, "say", this.word].join(" ");
   console.log(talk);
 }
 
 var bottle = {
-  name: 'bottle', 
-  word: 'hello'
+  name: "bottle",
+  word: "hello"
 };
 
 // 使用 call 将 bottle 传递为 sayWord 的 this
-sayWord.call(bottle); 
+sayWord.call(bottle);
 // bottle say hello
 ```
 
-#### apply  apply() 方法调用一个具有给定this值的函数，以及作为一个数组（或类似数组对象）提供的参数。语法：func.apply(thisArg, [argsArray])
+#### apply apply() 方法调用一个具有给定 this 值的函数，以及作为一个数组（或类似数组对象）提供的参数。语法：func.apply(thisArg, [argsArray])
+
 1. 配合内置函数找出最大最小值
+
 ```js
 /* 找出数组中最大/小的数字 */
 let numbers = [5, 6, 2, 3, 7]
 /* 应用(apply) Math.min/Math.max 内置函数完成 */
 
-let max = Math.max.apply(null, numbers) 
+let max = Math.max.apply(null, numbers)
 /* 基本等同于 Math.max(numbers[0], ...) 或 Math.max(5, 6, ..) */
 
 let min = Math.min.apply(null, numbers)
@@ -59,7 +64,7 @@ let max = -Infinity, min = +Infinity
 for (var i = 0; i < numbers.length; i++) {
   if (numbers[i] > max)
     max = numbers[i]
-  if (numbers[i] < min) 
+  if (numbers[i] < min)
     min = numbers[i]
 }
 
@@ -82,6 +87,7 @@ function minOfArray(arr) {
 var min = minOfArray([5, 6, 2, 3, 7])
 // max 同样也是如此
 ```
+
 2. 函数转移
 
 ```js
@@ -95,10 +101,65 @@ let wrapper = function() {
 
 ```js
 function test(arg) {
-  console.log(this.name)
-  console.log(arg)
+  console.log(this.name);
+  console.log(arg);
 }
-const newtest = test.bind({name: '123'},'ahahh')
-newtest()
+const newtest = test.bind({ name: "123" }, "ahahh");
+newtest();
 ```
 
+手动实现三种
+
+Function.prototype.myCall = function(context) {
+if (typeof this !== "function") {
+throw Error("Error");
+}
+
+let args = [...arguments].slice(1),
+res = null;
+context = context || window;
+context["fn"] = this;
+res = context["fn"](...args);
+delete context["fn"];
+return res;
+};
+function aa() {
+console.log(this.name);
+}
+// aa.myCall({ name: "123" }, 12);
+
+Function.prototype.myApply = function(cxt) {
+if (typeof this !== "function") {
+throw Error("error");
+}
+let res = null;
+cxt = cxt || window;
+cxt.fn = this;
+res = arguments[1] ? cxt.fn(...arguments[1]) : cxt.fn();
+delete cxt.fn;
+return res;
+};
+function bb() {
+console.log(this.name);
+}
+// bb.myApply({ name: "123" }, [12, 23]);
+
+Function.prototype.Mybind = function(context) {
+if (typeof this !== "function") {
+throw Error("error");
+}
+var args = [arguments[1]],
+fn = this;
+return function Fn() {
+return fn.apply(
+this instanceof Fn ? this : context,
+args.concat(...arguments)
+);
+};
+};
+
+function cc() {
+console.log(this.name);
+}
+
+cc.Mybind({ name: 123 }, { name: 234 })();
