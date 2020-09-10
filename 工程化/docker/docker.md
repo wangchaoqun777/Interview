@@ -38,3 +38,18 @@
 
 9. 测试安装成功
    docker-compose version
+
+
+
+
+- 步骤
+# 1. 更新软件库
+yum update -y
+# 2. 安装docker
+yum install docker -y
+# 3. 启动docker
+service docker start
+# 4. 停止docker服务
+service docker stop
+# 5. 重启docker
+service docker restart 
