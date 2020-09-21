@@ -34,7 +34,7 @@ function clone(origin) {
  (3). Object.getOwnPropertyNames(obj)
  Object.getOwnPropertyNames返回一个数组，包含对象自身的所有属性（不含 Symbol 属性，但是包括不可枚举属性）。
 
- (4).Object.getOwnp\PropertySymbols(obj)
+ (4).Object.getOwnPropertySymbols(obj)
  Object.getOwnPropertySymbols返回一个数组，包含对象自身的所有 Symbol 属性。
 
  (5). Reflect.ownKeys(obj)

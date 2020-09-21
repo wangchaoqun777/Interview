@@ -11,9 +11,9 @@ BFC 块级格式化上下文
    }
 
 B. 消除父子 margin 重叠的方法：
-给父元素加 border
-设置父元素的 padding 或者 margin
-给父元素添加 overflow：hidden
+    给父元素加 border
+    设置父元素的 padding 或者 margin
+    给父元素添加 overflow：hidden
 
 C. bfc 的区域不会与 float 的元素区域重叠
 .main {

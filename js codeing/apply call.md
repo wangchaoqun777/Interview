@@ -145,21 +145,21 @@ console.log(this.name);
 // bb.myApply({ name: "123" }, [12, 23]);
 
 Function.prototype.Mybind = function(context) {
-if (typeof this !== "function") {
-throw Error("error");
-}
-var args = [arguments[1]],
-fn = this;
-return function Fn() {
-return fn.apply(
-this instanceof Fn ? this : context,
-args.concat(...arguments)
-);
-};
+  if (typeof this !== "function") {
+    throw Error("error");
+  }
+  var args = [arguments[1]],
+  fn = this;
+  return function Fn() {
+    return fn.apply(
+      this instanceof Fn ? this : context,
+      args.concat(...arguments)
+    );
+  };
 };
 
 function cc() {
-console.log(this.name);
+ console.log(this.name);
 }
 
 cc.Mybind({ name: 123 }, { name: 234 })();
