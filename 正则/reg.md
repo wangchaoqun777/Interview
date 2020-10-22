@@ -31,3 +31,6 @@
 - 验证 search test mathch exec
 - 提取 search test mathch exec replace
 - 替换 replace
+
+
+var reg = /^[A-Za-zd]+([-_.][A-Za-zd]+)*@([A-Za-zd]+[-.])+[A-Za-zd]{2,5}$/  正则
