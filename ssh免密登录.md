@@ -15,3 +15,8 @@
   - 上传公钥到服务器
     - 执行`ssh-copy-id -p port user@remote`，可以让远程服务器记住公钥
     - 执行`ssh-copy-id -i .ssh/id_rsa.pub user@remote`，可以让远程服务器记住公钥
+
+
+
+
+scp -P 9777 -r root@121.42.232.105:/data/www/lighttpd/bmwcodingweb_humanupdaterule_online/resources /Users/wangchaoqun/project/bmwcoding

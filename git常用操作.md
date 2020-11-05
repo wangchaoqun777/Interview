@@ -45,3 +45,9 @@ git remote add origin git@**\*\***
 
 14. 撤销本地分支合并
     git revert <commit-id>
+
+
+15. 版本回退
+    git reset --hard **** 
+    git log
+    git push -f
