@@ -43,6 +43,8 @@ git remote add origin git@**\*\***
 13. 本地提交了错误的文件
     git reset --hard HEAD~1
 
+    git push -f 强推
+
 14. 撤销本地分支合并
     git revert <commit-id>
 
