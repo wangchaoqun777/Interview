@@ -53,3 +53,7 @@ git remote add origin git@**\*\***
     git reset --hard **** 
     git log
     git push -f
+
+16. 设置当前git仓库 对文件名大小写敏感
+git仓库根目录执行命令：
+git config core.ignorecase
