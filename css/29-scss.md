@@ -129,3 +129,42 @@ aside[role="complementary"] {
   width: 300px / 960px * 100%;
 }
 ```
+1. 动态 viewport + rem
+<script>    
+    var viewport = document.querySelector("meta[name=viewport]");
+    //下面是根据设备像素设置viewport
+    if (window.devicePixelRatio == 1) {
+            viewport.setAttribute('content', 'width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no');
+    }
+    if (window.devicePixelRatio == 2) {
+            viewport.setAttribute('content', 'width=device-width,initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no');
+    }
+    if (window.devicePixelRatio == 3) {
+            viewport.setAttribute('content', 'width=device-width,initial-scale=0.3333333333333333, maximum-scale=0.3333333333333333, minimum-scale=0.3333333333333333, user-scalable=no');
+    }
+    var docEl = document.documentElement;
+    var fontsize = 10 * (docEl.clientWidth / 320) + 'px';
+    docEl.style.fontSize = fontsize;
+
+</script>
+
+2. 
+```css
+.setBorderAll{
+     position: relative;
+       &:after{
+           content:" ";
+           position:absolute;
+           top: 0;
+           left: 0;
+           width: 200%;
+           height: 200%;
+           transform: scale(0.5);
+           transform-origin: left top;
+           box-sizing: border-box;
+           border: 1px solid #E5E5E5;
+           border-radius: 4px;
+      }
+    }
+    /* 将伪元素设置绝对定位，并且和父元素的左上角对齐，为了只缩放 border 1px 的粗细，而保证 border 的大小不变，将width、hegiht 设置200%，height设置为1px，然后进行在Y方向缩小0.5倍。 */
+```

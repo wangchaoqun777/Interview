@@ -21,9 +21,9 @@
 7. 切换远程仓库
    修改; git remote set-url origin url
 
-先删后加
-git remote rm origin
-git remote add origin git@**\*\***
+    先删后加
+    git remote rm origin
+    git remote add origin git@**\*\***
 
 8. 拉取主分支代码
    git pull origin master
@@ -55,5 +55,36 @@ git remote add origin git@**\*\***
     git push -f
 
 16. 设置当前git仓库 对文件名大小写敏感
-git仓库根目录执行命令：
-git config core.ignorecase
+    git仓库根目录执行命令：
+    git config core.ignorecase
+
+17. git rebase 
+    特别注意，只能在自己使用的 feature 分支上进行 rebase 操作，不允许在集成分支上进行 rebase，因为这种操作会修改集成分支的历史记录
+
+18. git alias
+
+    $ git config --global alias.co checkout
+    $ git config --global alias.ci commit
+    $ git config --global alias.br branch
+
+    或者以下配置替换到 .gitconfig 文件里的 [alias] 所属的区域，然后就可以愉快的使用了~
+    [alias]
+    st = status -sb
+    co = checkout
+    br = branch
+    mg = merge
+    ci = commit
+    ds = diff --staged
+    dt = difftool
+    mt = mergetool
+    last = log -1 HEAD
+    latest = for-each-ref --sort=-committerdate --format=\"%(committername)@%(refname:short) [%(committerdate:short)] %(contents)\"
+    ls = log --pretty=format:\"%C(yellow)%h %C(blue)%ad %C(red)%d %C(reset)%s %C(green)[%cn]\" --decorate --date=short
+    hist = log --pretty=format:\"%C(yellow)%h %C(red)%d %C(reset)%s %C(green)[%an] %C(blue)%ad\" --topo-order --graph --date=short
+    type = cat-file -t
+    dump = cat-file -p
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+19. 打标签
+    git tag -a v0.1.0 -m '完成了demo版本的开发'
+    git push origin v0.1.0
