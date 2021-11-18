@@ -36,15 +36,6 @@ var arr = [8, 19, 20, 32, 7, 18, 5, 30];
 //   }
 // }
 
-for(let i = 0; i< arr.length -1; i++) {
-  for (let j = i + 1; j < arr.length; j++) {
-    if (arr[j] < arr[i]){
-      let temp = arr[i]
-      arr[i] = arr[j]
-      arr[j] = temp
-    }
-  }
-}
 
 // 快速排序
 function fast(arr) {

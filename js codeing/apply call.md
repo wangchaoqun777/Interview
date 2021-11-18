@@ -109,7 +109,7 @@ newtest();
 ```
 
 手动实现三种
-
+```js
 Function.prototype.myCall = function(context) {
 if (typeof this !== "function") {
 throw Error("Error");
@@ -163,3 +163,4 @@ function cc() {
 }
 
 cc.Mybind({ name: 123 }, { name: 234 })();
+```

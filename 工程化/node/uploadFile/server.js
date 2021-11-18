@@ -1,10 +1,14 @@
 const http = require('http')
+
 const url = require('url')
+
 function start (route, handler) {
+
   function onRequest(req, res) {
+
     const pathname = url.parse(req.url).pathname
 
-    let postData = ''
+    // let postData = ''
 
     // req.setEncoding("utf8");
 
@@ -20,6 +24,7 @@ function start (route, handler) {
     route(handler, pathname, res, req)
     
   }
+
   http.createServer(onRequest).listen(3001)
 }
 
