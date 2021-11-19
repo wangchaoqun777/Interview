@@ -2,7 +2,7 @@
 
 - 观察者模式简单实现
   ```js
-    class MyPromise {
+  class MyPromise {
     constructor (executor) {
       this._resolveArr = []
       this._rejectArr = []
@@ -22,17 +22,22 @@
     
       executor(_resolve,_reject)
     }
+
     then(resultFn,rejectFn) {
       this._resolveArr.push(resultFn)
       this._rejectArr.push(rejectFn)
     }
+
   }
+
   const p2 = new MyPromise((resolve,reject)=>{
     setTimeout(()=>{
       resolve('resolve')
       reject('reject')
+      console.log('time')
     },1000)
   })
+
   p2.then((res)=> {
     console.log('tag2', res)
   },(err)=>{
@@ -142,45 +147,43 @@ class MyPromise {
     return new MyPromise((resolve, reject) => reject(reason))
   }
   //静态的all方法
-    static all(promiseArr) {
-      let index = 0
-      let result = []
-      return new MyPromise((resolve, reject) => {
-        promiseArr.forEach((p, i) => {
-          //Promise.resolve(p)用于处理传入值不为Promise的情况
-          MyPromise.resolve(p).then(
-            val => {
-              index++
-              result[i] = val
-              //所有then执行后, resolve结果
-              if(index === promiseArr.length) {
-                resolve(result)
-              }
-            },
-            err => {
-              //有一个Promise被reject时，MyPromise的状态变为reject
-              reject(err)
+  static all(promiseArr) {
+    let index = 0
+    let result = []
+    return new MyPromise((resolve, reject) => {
+      promiseArr.forEach((p, i) => {
+        //Promise.resolve(p)用于处理传入值不为Promise的情况
+        MyPromise.resolve(p).then(
+          val => {
+            index++
+            result[i] = val
+            //所有then执行后, resolve结果
+            if(index === promiseArr.length) {
+              resolve(result)
             }
-          )
-        })
+          },
+          err => {
+            //有一个Promise被reject时，MyPromise的状态变为reject
+            reject(err)
+          }
+        )
       })
-    static race(promiseArr) {
-      return new MyPromise((resolve, reject) => {
-        //同时执行Promise,如果有一个Promise的状态发生改变,就变更新MyPromise的状态
-        for (let p of promiseArr) {
-          MyPromise.resolve(p).then(  //Promise.resolve(p)用于处理传入值不为Promise的情况
-            value => {
-              resolve(value)        //注意这个resolve是上边new MyPromise的
-            },
-            err => {
-              reject(err)
-            }
-          )
-        }
-      })
-    }
-
-
+    })
+  static race(promiseArr) {
+    return new MyPromise((resolve, reject) => {
+      //同时执行Promise,如果有一个Promise的状态发生改变,就变更新MyPromise的状态
+      for (let p of promiseArr) {
+        MyPromise.resolve(p).then(  //Promise.resolve(p)用于处理传入值不为Promise的情况
+          value => {
+            resolve(value)        //注意这个resolve是上边new MyPromise的
+          },
+          err => {
+            reject(err)
+          }
+        )
+      }
+    })
+  }
 }
 
 p2

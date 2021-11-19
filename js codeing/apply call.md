@@ -111,37 +111,37 @@ newtest();
 手动实现三种
 ```js
 Function.prototype.myCall = function(context) {
-if (typeof this !== "function") {
-throw Error("Error");
-}
+  if (typeof this !== "function") {
+    throw Error("Error");
+  }
 
-let args = [...arguments].slice(1),
-res = null;
-context = context || window;
-context["fn"] = this;
-res = context["fn"](...args);
-delete context["fn"];
-return res;
+  let args = [...arguments].slice(1),
+  res = null;
+  context = context || window;
+  context["fn"] = this;
+  res = context["fn"](...args);
+  delete context["fn"];
+  return res;
 };
 function aa() {
-console.log(this.name);
+  console.log(this.name);
 }
 // aa.myCall({ name: "123" }, 12);
 
 Function.prototype.myApply = function(cxt) {
-if (typeof this !== "function") {
-throw Error("error");
-}
-let res = null;
-cxt = cxt || window;
-cxt.fn = this;
-res = arguments[1] ? cxt.fn(...arguments[1]) : cxt.fn();
-delete cxt.fn;
-return res;
-};
-function bb() {
-console.log(this.name);
-}
+  if (typeof this !== "function") {
+    throw Error("error");
+  }
+  let res = null;
+  cxt = cxt || window;
+  cxt.fn = this;
+  res = arguments[1] ? cxt.fn(...arguments[1]) : cxt.fn();
+  delete cxt.fn;
+  return res;
+  };
+  function bb() {
+    console.log(this.name);
+  }
 // bb.myApply({ name: "123" }, [12, 23]);
 
 Function.prototype.Mybind = function(context) {

@@ -1,9 +1,21 @@
 1. Array.from() 将伪数组对象或可遍历对象转换为真数组
 2. Array.of(v1,v2,v3) 将一系列的值转换为数组
-3. find（） 参数为回调函数，所有数组成员一次执行改回调函数
+3. find（） 参数为回调函数，所有数组成员一次执行该回调函数
 4. findIndex() 返回第一个符合条件的数组成员的位置
 5. includes() 返回一个布尔值,表示某个数组是否包含给定的值
-6. 数组实例的 entries()，keys() 和 values()
+6. 数组实例的 
+    - entries()
+      for(let [index, val] of arr.entries()) {
+        console.log(index,val)
+      }
+    - keys()
+      for (let index of arr.keys()) {
+        console.log(index)
+      }
+    - values()
+      for (let val of arr.values()) {
+        console.log(val)
+      }
 
 7. class 实现构造函数
 ```js
@@ -26,7 +38,7 @@ Class MathFun {
   }
   // 在类里面添加静态的方法可以使用static这个关键词，静态方法就是不需要实例化类就能使用的方法
   static add1 (a,b){
-       return a+b;
+      return a+b;
    }
   add () {
     return this.x + this.y
@@ -80,7 +92,7 @@ const dog = new Dog()
 dog.eat()
 dog.bark()
 ```
-9. flat()
+9. flat() // 扁平化
 ```js
 const arr = [1, [1,2], [1,2,3]]
 arr.flat(Infinity) // [1,1,2,1,2,3]

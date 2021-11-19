@@ -1,7 +1,7 @@
 
-#### fetch 是一种HTTP数据请求的方法 XMLHttpRequest的一种替代方案 etch不是ajax的进一步封装，而是原生js
+#### fetch 是一种HTTP数据请求的方法 XMLHttpRequest的一种替代方案 fetch不是ajax的进一步封装，而是原生js
 
-首先复习下ajax 
+首先复习下ajax
 步骤：
   1.创建XmlHttpRequest对象
   2.调用open方法设置基本请求信息
