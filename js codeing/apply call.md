@@ -138,10 +138,11 @@ Function.prototype.myApply = function(cxt) {
   res = arguments[1] ? cxt.fn(...arguments[1]) : cxt.fn();
   delete cxt.fn;
   return res;
-  };
-  function bb() {
-    console.log(this.name);
-  }
+};
+
+function bb() {
+  console.log(this.name);
+}
 // bb.myApply({ name: "123" }, [12, 23]);
 
 Function.prototype.Mybind = function(context) {
