@@ -12,3 +12,18 @@
 
 5. event Loop
    主线程运行的时候，产生堆（heap）和栈（stack），栈中的代码调用各种外部 API，它们在"任务队列"中加入各种事件（click，load，done）。只要栈中的代码执行完毕，主线程就会去读取"任务队列"，依次执行那些事件所对应的回调函数。执行栈中的代码（同步任务），总是在读取"任务队列"（异步任务）之前执行
+
+
+- 宏任务：浏览器中维护
+  setTimeOut，
+  setInterval, 
+  setInnediate,
+- 微任务：引擎中维护
+  Promise.then catch finally
+  process.nextTick
+
+- 终极顺序就是
+  while (true) {
+    宏任务队列.shift()
+    微任务队列全部任务()
+  }

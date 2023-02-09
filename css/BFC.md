@@ -36,3 +36,13 @@ bfc 就是页面上的一个独立容器，容器里面的子元素不会影响�
 定位元素：position (absolute、fixed)；
 display 为 inline-block, table-cell, table-caption, flex, inline-flex；
 overflow 除了 visible 以外的值 (hidden、auto、scroll)。
+
+简单来说就是，BFC是一个完全独立的空间（布局环境），让空间里的子元素不会影响到外面的布局。那么怎么使用BFC呢，BFC可以看做是一个CSS元素属性
+怎样触发BFC
+
+BFC的规则
+BFC就是一个块级元素，块级元素会在垂直方向一个接一个的排列
+BFC就是页面中的一个隔离的独立容器，容器里的标签不会影响到外部标签
+垂直方向的距离由margin决定， 属于同一个BFC的两个相邻的标签外边距会发生重叠
+计算BFC的高度时，浮动元素也参与计算
+

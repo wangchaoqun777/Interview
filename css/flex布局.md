@@ -63,6 +63,7 @@ align-self
 - 基线排列 baseline
 - 拉伸排列 stretch
 
+// 子元素的缩放
 flex-basis 基准大小
 flex-grow 扩展比例
 flex-shrink 收缩比例
